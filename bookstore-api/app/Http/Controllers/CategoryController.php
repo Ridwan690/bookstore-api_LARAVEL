@@ -21,4 +21,10 @@ class CategoryController extends Controller
         $criteria = Category::paginate(4);
         return new CategoryResourceCollection($criteria);   
     }
+
+    public function slug($slug)
+    {
+        $criteria = Category::where('slug', $slug)->first();
+        return new CategoryResource($criteria);
+    }
 }

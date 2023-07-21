@@ -37,5 +37,21 @@ class BookController extends Controller
             ->get();
         return new BookResourceCollection($criteria);
     }
+
+    public function slug($slug)
+    {
+        $criteria = Book::where('slug', $slug)->first();
+        return new BookResource($criteria);
+    }
+
+    public function search($keyword)
+    {
+        $criteria = Book::select('*')
+            ->where('title', 'LIKE', "%".$keyword."%")
+            ->orderBy('views', 'DESC')
+            ->get();
+        return new BookResourceCollection($criteria);
+    }
+
 }
 

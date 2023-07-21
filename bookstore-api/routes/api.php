@@ -57,6 +57,9 @@ Route::prefix('v1')->group(function () {
     Route::get('books/top/{count}', [BookController::class, 'top']);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('books', [BookController::class, 'index']);
+    Route::get('categories/slug/{slug}', [CategoryController::class, 'slug']);
+    Route::get('books/slug/{slug}', [BookController::class, 'slug']);
+    Route::get('books/search/{keyword}', [BookController::class, 'search']);
 });
 
 
