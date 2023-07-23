@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShopController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,8 @@ Route::prefix('v1')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::group(['middleware' => 'cors'], function () {
         Route::post('logout',[AuthController::class,'logout']);
+        Route::post('shipping', [ShopController::class, 'shipping']);
+        Route::post('services', [ShopController::class, 'services']);
     });
 
     Route::get('books', [BookController::class, 'index']);
@@ -60,6 +64,10 @@ Route::prefix('v1')->group(function () {
     Route::get('categories/slug/{slug}', [CategoryController::class, 'slug']);
     Route::get('books/slug/{slug}', [BookController::class, 'slug']);
     Route::get('books/search/{keyword}', [BookController::class, 'search']);
+    Route::get('provinces', [ShopController::class, 'provinces']);
+    Route::get('cities', [ShopController::class, 'cities']);
+    Route::get('couriers', [ShopController::class, 'couriers']);
+    
 });
 
 
